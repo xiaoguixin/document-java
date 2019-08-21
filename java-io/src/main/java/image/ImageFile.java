@@ -15,11 +15,11 @@ public class ImageFile {
 
     public static void main(String[] args) throws IOException {
         BufferedImage bufferedImage = new BufferedImage(400,400,BufferedImage.TYPE_INT_RGB);
-        fill(bufferedImage);
+        draw(bufferedImage);
     }
 
     /**
-     * 演示填充
+     * 演示fill
      * @param bufferedImage
      * @throws IOException
      */
@@ -58,10 +58,19 @@ public class ImageFile {
         ImageIO.write(bufferedImage,"JPEG", new FileOutputStream(savePath));
     }
 
-    public void draw(BufferedImage bufferedImage) throws IOException {
+    /**
+     * 演示draw
+     * @param bufferedImage
+     * @throws IOException
+     */
+    public static void draw(BufferedImage bufferedImage) throws IOException {
         int width = bufferedImage.getWidth();
         int height = bufferedImage.getHeight();
         Graphics2D graphics2D = bufferedImage.createGraphics();
+
+        // 设置背景
+        graphics2D.setColor(Color.WHITE);
+        graphics2D.fillRect(0, 0, width, height);
 
         // 画框
         graphics2D.setColor(Color.RED);
@@ -69,13 +78,11 @@ public class ImageFile {
 
         // 画线
         graphics2D.setColor(Color.BLUE);
-        graphics2D.drawLine(2,2,100,2);
-
-        // 画点
-        graphics2D.setColor(Color.RED);
-        graphics2D.drawLine(185,185,185,185);
+        graphics2D.drawLine(0,20,100,2);
 
         // 画圆
+        graphics2D.setColor(Color.PINK);
+        graphics2D.drawRoundRect(185,185,30,30,30,30);
 
         // 保存图片
         ImageIO.write(bufferedImage,"JPEG", new FileOutputStream(savePath));
